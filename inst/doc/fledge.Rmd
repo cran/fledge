@@ -1,0 +1,49 @@
+---
+title: "Get started with fledge"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{fledge}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(fledge)
+```
+
+```{r child="../man/rmd-fragments/pitch.Rmd"} 
+```
+
+```{r child="../man/rmd-fragments/summary.Rmd"} 
+```
+
+## Installation & setup
+
+```{r child="../man/rmd-fragments/setup.Rmd"} 
+```
+
+## Functions
+
+```{r child="../man/rmd-fragments/functions.Rmd"} 
+```
+
+
+## Usage
+
+```{r child="../man/rmd-fragments/usage.Rmd"} 
+```
+
+## FAQ & edge cases
+
+```{r child="../man/rmd-fragments/faq.Rmd"} 
+```
+
+```{r child="../man/rmd-fragments/caveats.Rmd"} 
+```
