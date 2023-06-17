@@ -14,25 +14,38 @@
 
 <title>Get started with fledge</title>
 
-<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
 
 <style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
 
 
 <style type="text/css">
-  code {
-    white-space: pre;
-  }
-  .sourceCode {
-    overflow: visible;
-  }
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
@@ -50,55 +63,54 @@ pre > code.sourceCode { white-space: pre-wrap; }
 pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
-  { counter-reset: source-line 0; }
+{ counter-reset: source-line 0; }
 pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
+{ position: relative; left: -4em; counter-increment: source-line; }
 pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
 div.sourceCode
-  {   }
+{ }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
 <script>
 // apply pandoc div.sourceCode style to pre.sourceCode instead
@@ -107,13 +119,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -125,7 +144,187 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
 
 
 
@@ -141,23 +340,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fledge)</span></code></pre></div>
-<p>Do you want to provide a changelog (<a href="https://blog.r-hub.io/2020/05/08/pkg-news/#why-write-the-changelog-as-newsmd">NEWS.md</a>) more informative than <a href="https://twitter.com/EmilyKager/status/1413628436984188933">“bug fixes and performance improvements”</a> to the users of your package?</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(fledge)</span></code></pre></div>
+<p>Do you want to provide a changelog (<a href="https://blog.r-hub.io/2020/05/08/pkg-news/#why-write-the-changelog-as-newsmd">NEWS.md</a>)
+more informative than “bug fixes and performance improvements”
+(<code>https://twitter.com/EmilyKager/status/1413628436984188933</code>)
+to the users of your package?</p>
 <p>Ways to achieve that are:</p>
 <ul>
-<li><p>Update NEWS.md right before release by reading through commit messages. Not necessarily fun!</p></li>
-<li><p>Update the changelog in every commit e.g. in every PR. Now, if there are several feature PRs around that update the changelog, you’ll have a few clicks to make to tackle conflicts. Easy enough, but potentially annoying.</p></li>
+<li><p>Update NEWS.md right before release by reading through commit
+messages. Not necessarily fun!</p></li>
+<li><p>Update the changelog in every commit e.g. in every PR. Now, if
+there are several feature PRs around that update the changelog, you’ll
+have a few clicks to make to tackle conflicts. Easy enough, but
+potentially annoying.</p></li>
 <li><p>Use fledge to</p>
 <ul>
-<li>fill the <code>NEWS.md</code> for you based on informative commit messages,</li>
-<li>increase the version number in <code>DESCRIPTION</code> (e.g. useful in bug reports with session information!),</li>
-<li>create git tags (more coarse-grained history compared to top-level merges see <a href="https://github.com/cynkra/fledge/tags">fledge tag list on GitHub</a>).</li>
+<li>fill the <code>NEWS.md</code> for you based on informative commit
+messages,</li>
+<li>increase the version number in <code>DESCRIPTION</code> (e.g. useful
+in bug reports with session information!),</li>
+<li>create git tags (more coarse-grained history compared to top-level
+merges see <a href="https://github.com/cynkra/fledge/tags">fledge tag
+list on GitHub</a>).</li>
 </ul></li>
 </ul>
-<p>Using fledge is a discipline / a few habits that is worth learning!</p>
+<p>Using fledge is a discipline / a few habits that is worth
+learning!</p>
 <p>What you need to do in practice is:</p>
 <ul>
-<li>Add a hyphen <code>-</code> or <code>*</code> at the beginning of important commit messages e.g. the merge or squash commits that merge a Pull Request. These are the commit messages that’ll be recorded in the changelog eventually! Exclude housekeeping parts of the message by typing them after a line <code>---</code>.</li>
+<li>Add a hyphen <code>-</code> or <code>*</code> at the beginning of
+important commit messages e.g. the merge or squash commits that merge a
+Pull Request. These are the commit messages that’ll be recorded in the
+changelog eventually! Exclude housekeeping parts of the message by
+typing them after a line <code>---</code>.</li>
 </ul>
 <pre class="text"><code>
 - Add support for bla databases.
@@ -170,11 +385,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 Also tweak the CI workflow accordingly. :sweat_smile:
 </code></pre>
-<p>For informative commit messages refer to the <a href="https://style.tidyverse.org/news.html">Tidyverse style guide</a>.</p>
+<p>For informative commit messages refer to the <a href="https://style.tidyverse.org/news.html">Tidyverse style
+guide</a>.</p>
 <ul>
-<li><p>Run <code>fledge::bump_version()</code> regularly e.g. before every coffee break or at the end of the day or of the week. If you forgot to merge one PR run <code>fledge::unbump_version()</code>, merge the PR with an informative squash commit message, then run <code>fledge::bump_version()</code> and go drink that coffee!</p></li>
-<li><p>Run <code>fledge::finalize_version()</code> if you add to edit <code>NEWS.md</code> manually e.g. if you made a typo or are not happy with a phrasing after thinking about it. Even if you edit a lot, what’s been written in by fledge is still a good place-holder.</p></li>
-<li><p>Follow the recommended steps at release (see <code>vignette(&quot;fledge&quot;)</code> usage section).</p></li>
+<li><p>Run <code>fledge::bump_version()</code> regularly e.g. before
+every coffee break or at the end of the day or of the week. If you
+forgot to merge one PR run <code>fledge::unbump_version()</code>, merge
+the PR with an informative squash commit message, then run
+<code>fledge::bump_version()</code> and go drink that coffee!</p></li>
+<li><p>Run <code>fledge::finalize_version()</code> if you add to edit
+<code>NEWS.md</code> manually e.g. if you made a typo or are not happy
+with a phrasing after thinking about it. Even if you edit a lot, what’s
+been written in by fledge is still a good place-holder.</p></li>
+<li><p>Follow the recommended steps at release (see
+<code>vignette(&quot;fledge&quot;)</code> usage section).</p></li>
 </ul>
 <p>These habits are worth learning!</p>
 <div id="installation-setup" class="section level2">
@@ -182,27 +406,38 @@ Also tweak the CI workflow accordingly. :sweat_smile:
 <div id="once-per-machine" class="section level3">
 <h3>Once per machine</h3>
 <p>Install from cynkra’s R-universe using:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;fledge&quot;</span>, <span class="at">repos =</span> <span class="st">&quot;https://cynkra.r-universe.dev&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;fledge&quot;</span>, <span class="at">repos =</span> <span class="st">&quot;https://cynkra.r-universe.dev&quot;</span>)</span></code></pre></div>
 <p>Or install from GitHub using:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;cynkra/fledge&quot;</span>)</span></code></pre></div>
-<p>If you are used to making workflow packages (e.g. <a href="https://usethis.r-lib.org/articles/articles/usethis-setup.html#use-usethis-or-devtools-in-interactive-work">devtools</a>) available for all your interactive work, you might enjoy loading fledge in your <a href="https://rstats.wtf/r-startup.html#rprofile">.Rprofile</a>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;cynkra/fledge&quot;</span>)</span></code></pre></div>
+<p>If you are used to making workflow packages (e.g. <a href="https://usethis.r-lib.org/articles/articles/usethis-setup.html#use-usethis-or-devtools-in-interactive-work">devtools</a>)
+available for all your interactive work, you might enjoy loading fledge
+in your <a href="https://rstats.wtf/r-startup.html#rprofile">.Rprofile</a>.</p>
 </div>
 <div id="once-per-package" class="section level3">
 <h3>Once per package</h3>
 <ul>
-<li><p>Your package needs to have a remote that indicates the default branch (e.g. GitHub remote) <em>or</em> to be using the same default branch name as your global/project <code>init.defaultbranch</code>.</p></li>
+<li><p>Your package needs to have a remote that indicates the default
+branch (e.g. GitHub remote) <em>or</em> to be using the same default
+branch name as your global/project
+<code>init.defaultbranch</code>.</p></li>
 <li><p>If your package…</p>
 <ul>
-<li>is brand-new, remember to run <code>fledge::bump_version()</code> regularly.</li>
-<li>has already undergone some development, it is not too late to jump on the train! Run <code>fledge::bump_version()</code> and then <code>fledge::finalize_version()</code>.</li>
+<li>is brand-new, remember to run <code>fledge::bump_version()</code>
+regularly.</li>
+<li>has already undergone some development, it is not too late to jump
+on the train! Run <code>fledge::bump_version()</code> and then
+<code>fledge::finalize_version()</code>.</li>
 </ul></li>
-<li><p>Add a mention of fledge usage in your contributing guide, as contributors might not know about it. A comment is added to the top of <code>NEWS.md</code>, but it tends to be ignored occasionally.</p></li>
+<li><p>Add a mention of fledge usage in your contributing guide, as
+contributors might not know about it. A comment is added to the top of
+<code>NEWS.md</code>, but it tends to be ignored occasionally.</p></li>
 </ul>
 </div>
 </div>
 <div id="functions" class="section level2">
 <h2>Functions</h2>
-<p>{fledge} consists of the following functions that enable versioning at different stages through the package development lifecycle.</p>
+<p>{fledge} consists of the following functions that enable versioning
+at different stages through the package development lifecycle.</p>
 <table style="width:100%;">
 <colgroup>
 <col width="33%" />
@@ -219,7 +454,8 @@ Also tweak the CI workflow accordingly. :sweat_smile:
 <tbody>
 <tr class="odd">
 <td><code>bump_version(which)</code></td>
-<td>Increments the package version based on argument. (Version format supported <em>major.minor.dev.patch</em>)</td>
+<td>Increments the package version based on argument. (Version format
+supported <em>major.minor.dev.patch</em>)</td>
 <td>Configuration, Development, Release</td>
 </tr>
 <tr class="even">
@@ -229,22 +465,26 @@ Also tweak the CI workflow accordingly. :sweat_smile:
 </tr>
 <tr class="odd">
 <td><code>commit_version()</code></td>
-<td>Commits <code>NEWS.md</code> and <code>DESCRIPTION</code> to Git.</td>
+<td>Commits <code>NEWS.md</code> and <code>DESCRIPTION</code> to
+Git.</td>
 <td>Release</td>
 </tr>
 <tr class="even">
 <td><code>tag_version()</code></td>
-<td>Parses <code>NEWS.md</code> and creates/updates the tag for the most recent version.</td>
+<td>Parses <code>NEWS.md</code> and creates/updates the tag for the most
+recent version.</td>
 <td>Release</td>
 </tr>
 <tr class="odd">
 <td><code>update_news()</code></td>
-<td>Update <code>NEWS.md</code> with messages from top level commits</td>
+<td>Update <code>NEWS.md</code> with messages from top level
+commits</td>
 <td>Used by <code>bump_version()</code></td>
 </tr>
 <tr class="even">
 <td><code>update_version()</code></td>
-<td>Update <code>NEWS.md</code> and <code>DESCRIPTION</code> with a new version</td>
+<td>Update <code>NEWS.md</code> and <code>DESCRIPTION</code> with a new
+version</td>
 <td>Used by <code>bump_version()</code></td>
 </tr>
 </tbody>
@@ -252,47 +492,85 @@ Also tweak the CI workflow accordingly. :sweat_smile:
 </div>
 <div id="usage" class="section level2">
 <h2>Usage</h2>
-<p>The following sections show how to combine these functions at different stages with any R package on GitHub. All {fledge} commands should be issued from the package directory of the target R package.</p>
+<p>The following sections show how to combine these functions at
+different stages with any R package on GitHub. All {fledge} commands
+should be issued from the package directory of the target R package.</p>
 <div id="initial-configuration" class="section level3">
 <h3>Initial Configuration</h3>
-<p>{fledge} assumes that the target R package is version-controlled with Git in a dedicated repository. The following steps are required to set up {fledge} for first time use, with your package.</p>
+<p>{fledge} assumes that the target R package is version-controlled with
+Git in a dedicated repository. The following steps are required to set
+up {fledge} for first time use, with your package.</p>
 <ol style="list-style-type: decimal">
-<li><p>Call <code>bump_version()</code> as given below to set the package version</p>
+<li><p>Call <code>bump_version()</code> as given below to set the
+package version</p>
 <pre><code>fledge::bump_version()</code></pre></li>
-<li><p>Edit <code>NEWS.md</code> if required (typo fixes, rephrasing, grouping).</p></li>
-<li><p>Call <code>finalize_version()</code> as given below to update <code>NEWS.md</code></p>
+<li><p>Edit <code>NEWS.md</code> if required (typo fixes, rephrasing,
+grouping).</p></li>
+<li><p>Call <code>finalize_version()</code> as given below to update
+<code>NEWS.md</code></p>
 <pre><code>fledge::finalize_version()</code></pre></li>
 </ol>
-<p>You are all set to switch to the development stage now. Ensure that you use bullet points (<code>*</code> or <code>-</code>) in your commit or merge messages to indicate the messages that you want to include in <code>NEWS.md</code>. Use <code>finalize_version(push = TRUE)</code> to push to the remote repository (e.g. GitHub) in one swoop.</p>
+<p>You are all set to switch to the development stage now. Ensure that
+you use bullet points (<code>*</code> or <code>-</code>) in your commit
+or merge messages to indicate the messages that you want to include in
+<code>NEWS.md</code>. Use <code>finalize_version(push = TRUE)</code> to
+push to the remote repository (e.g. GitHub) in one swoop.</p>
 </div>
 <div id="development" class="section level3">
 <h3>Development</h3>
-<p>{fledge} aims to update <code>NEWS.md</code> and <code>DESCRIPTION</code> correctly whenever a new version is assigned. In order to do this, the following steps need to be included throughout the development workflow.</p>
+<p>{fledge} aims to update <code>NEWS.md</code> and
+<code>DESCRIPTION</code> correctly whenever a new version is assigned.
+In order to do this, the following steps need to be included throughout
+the development workflow.</p>
 <ol style="list-style-type: decimal">
-<li><p>In commit messages to your main branch (typically <code>main</code> or <code>master</code>), mark everything that should go to <code>NEWS.md</code> with a bullet point (<code>-</code> or <code>*</code>). This is applicable to single commits, merge commits, or squash commits from pull requests. Do not edit <code>NEWS.md</code> manually.</p></li>
-<li><p>When you want to assign a version number to the current state of your R package e.g. at the end of the day or before a break, call</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fledge<span class="sc">::</span><span class="fu">bump_version</span>()</span></code></pre></div>
-<p>The default argument for bump_version is “dev”. So the dev part of the version number will be updated. It is good practice to assign a new version number before switching focus to another project.</p></li>
-<li><p>Edit <code>NEWS.md</code> if required (typo fixes, rephrasing, grouping).</p></li>
-<li><p>Call <code>finalize_version()</code>: <code>fledge::finalize_version()</code>. This achieves the following:</p>
+<li><p>In commit messages to your main branch (typically
+<code>main</code> or <code>master</code>), mark everything that should
+go to <code>NEWS.md</code> with a bullet point (<code>-</code> or
+<code>*</code>). This is applicable to single commits, merge commits, or
+squash commits from pull requests. Do not edit <code>NEWS.md</code>
+manually.</p></li>
+<li><p>When you want to assign a version number to the current state of
+your R package e.g. at the end of the day or before a break, call</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>fledge<span class="sc">::</span><span class="fu">bump_version</span>()</span></code></pre></div>
+<p>The default argument for bump_version is “dev”. So the dev part of
+the version number will be updated. It is good practice to assign a new
+version number before switching focus to another project.</p></li>
+<li><p>Edit <code>NEWS.md</code> if required (typo fixes, rephrasing,
+grouping).</p></li>
+<li><p>Call <code>finalize_version()</code>:
+<code>fledge::finalize_version()</code>. This achieves the
+following:</p>
 <ul>
-<li><code>NEWS.md</code> is now composed, based on the most recent commit messages. To understand how <code>NEWS.md</code> is updated by fledge, see the section on <code>NEWS.md</code> implementation.</li>
-<li>A new version number is assigned automatically (this is modeled after <code>usethis::use_version()</code>).</li>
-<li>A tag matching the version number is assigned automatically, with the most recent <code>NEWS.md</code> messages included in the tag’s message.</li>
+<li><code>NEWS.md</code> is now composed, based on the most recent
+commit messages. To understand how <code>NEWS.md</code> is updated by
+fledge, see the section on <code>NEWS.md</code> implementation.</li>
+<li>A new version number is assigned automatically (this is modeled
+after <code>usethis::use_version()</code>).</li>
+<li>A tag matching the version number is assigned automatically, with
+the most recent <code>NEWS.md</code> messages included in the tag’s
+message.</li>
 </ul></li>
 </ol>
 </div>
 <div id="releasing-to-cran" class="section level3">
 <h3>Releasing to CRAN</h3>
-<p>When you want to release your package to CRAN, follow the steps below:</p>
+<p>When you want to release your package to CRAN, follow the steps
+below:</p>
 <ol style="list-style-type: decimal">
-<li><p>Call bump_version() with the appropriate argument (<code>&quot;patch&quot;</code>, <code>&quot;major&quot;</code>, <code>&quot;minor&quot;</code>). e.g.,</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fledge<span class="sc">::</span><span class="fu">bump_version</span>(<span class="st">&quot;patch&quot;</span>)</span></code></pre></div></li>
-<li><p>Edit <code>NEWS.md</code>, convert the “change log” to “release notes” – a higher-level description of features and bug fixes (typo fixes, rephrasing, grouping).</p></li>
+<li><p>Call bump_version() with the appropriate argument
+(<code>&quot;patch&quot;</code>, <code>&quot;major&quot;</code>, <code>&quot;minor&quot;</code>).
+e.g.,</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>fledge<span class="sc">::</span><span class="fu">bump_version</span>(<span class="st">&quot;patch&quot;</span>)</span></code></pre></div></li>
+<li><p>Edit <code>NEWS.md</code>, convert the “change log” to “release
+notes” – a higher-level description of features and bug fixes (typo
+fixes, rephrasing, grouping).</p></li>
 <li><p>Call <code>commit_version()</code> as below</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fledge<span class="sc">::</span><span class="fu">commit_version</span>()</span></code></pre></div></li>
-<li><p>Make any necessary adjustments before releasing to CRAN depending on results of preparatory / incoming checks.</p></li>
-<li><p>Once the release/changes have been accepted by CRAN, use the following calls to tag the released version and to switch to a development version immediately.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>fledge<span class="sc">::</span><span class="fu">commit_version</span>()</span></code></pre></div></li>
+<li><p>Make any necessary adjustments before releasing to CRAN depending
+on results of preparatory / incoming checks.</p></li>
+<li><p>Once the release/changes have been accepted by CRAN, use the
+following calls to tag the released version and to switch to a
+development version immediately.</p>
 <pre><code>fledge::tag_version()
 fledge::bump_version()</code></pre></li>
 <li><p>Return to development mode!</p></li>
@@ -301,24 +579,33 @@ fledge::bump_version()</code></pre></li>
 </div>
 <div id="faq-edge-cases" class="section level2">
 <h2>FAQ &amp; edge cases</h2>
-<p>At least we think these questions could be asked. Feel free to also <a href="https://github.com/cynkra/fledge/discussions">ask us questions</a>!</p>
+<p>At least we think these questions could be asked. Feel free to also
+<a href="https://github.com/cynkra/fledge/discussions">ask us
+questions</a>!</p>
 <div id="but-what-if-i-want-to-edit-news.md-manually" class="section level3">
 <h3>But what if I want to edit NEWS.md manually?</h3>
 <p>You still can!</p>
 <ul>
-<li><p>The best moment is between <code>bump_version()</code> and <code>finalize_version(push = TRUE)</code>.</p></li>
-<li><p>You can actually edit at any time, but only between those two calls the text in the changelog will be captured in the tag message, which is better for the tag history.</p></li>
+<li><p>The best moment is between <code>bump_version()</code> and
+<code>finalize_version(push = TRUE)</code>.</p></li>
+<li><p>You can actually edit at any time, but only between those two
+calls the text in the changelog will be captured in the tag message,
+which is better for the tag history.</p></li>
 </ul>
 </div>
 <div id="what-if-a-contributor-wants-to-contribute-a-news-item" class="section level3">
 <h3>What if a contributor wants to contribute a NEWS item?</h3>
-<p>If someone opens a PR, with fledge the information about the changes should be entered in the message for the merge or squash commit. Now you could still advise contributors to provide a summary of the change as a comment to the PR.</p>
+<p>If someone opens a PR, with fledge the information about the changes
+should be entered in the message for the merge or squash commit. Now you
+could still advise contributors to provide a summary of the change as a
+comment to the PR.</p>
 </div>
 <div id="does-this-mean-fix-42-will-appear-in-news.md" class="section level3">
 <h3>Does this mean “Fix #42” will appear in NEWS.md?</h3>
 <p>If you want to fix an issue with a commit message you can</p>
 <ul>
-<li>put “Fix #42” on a separate non-bulleted line or after a line with 3 hyphens.</li>
+<li>put “Fix #42” on a separate non-bulleted line or after a line with 3
+hyphens.</li>
 </ul>
 <pre><code>- Adds support for coolness (#42, @contributor).
 
@@ -326,17 +613,28 @@ fledge::bump_version()</code></pre></li>
 
 Fix #42</code></pre>
 <ul>
-<li>In a PR on e.g. GitHub you can link an issue to a PR by starting the first comment with “Fix 42” so the issue will be closed. The merge or squash commit will be hyperlinked to the PR, but the commit message won’t have that phrase. You should still add an acknowledgement in the actual commit message e.g. “- Adds support for coolness (#42, <span class="citation">@contributor</span>)”.</li>
+<li>In a PR on e.g. GitHub you can link an issue to a PR by starting the
+first comment with “Fix 42” so the issue will be closed. The merge or
+squash commit will be hyperlinked to the PR, but the commit message
+won’t have that phrase. You should still add an acknowledgement in the
+actual commit message e.g. “- Adds support for coolness (#42, <span class="citation">@contributor</span>)”.</li>
 </ul>
 </div>
 <div id="edge-cases" class="section level3">
 <h3>Edge cases</h3>
 <ul>
-<li><p>If you <strong>rebase after creating a tag</strong>, you need to call <code>finalize_version()</code> to make sure the tag is moved to the mainline branch.</p></li>
-<li><p>If you <strong>pushed</strong> via <code>finalize_version(push = TRUE)</code> or <code>git push</code>, the tag may have been pushed as well. In this case, invoke</p></li>
+<li><p>If you <strong>rebase after creating a tag</strong>, you need to
+call <code>finalize_version()</code> to make sure the tag is moved to
+the mainline branch.</p></li>
+<li><p>If you <strong>pushed</strong> via
+<code>finalize_version(push = TRUE)</code> or <code>git push</code>, the
+tag may have been pushed as well. In this case, invoke</p></li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin :vx.y.z.9www</span></code></pre></div>
-<p>(where <code>x.y.z.9www</code> is the new version) to delete the newly created remote tag. This is the reason why {fledge} only tags <code>&quot;dev&quot;</code> releases automatically. Other releases always must be tagged manually with <code>tag_version()</code>.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">git</span> push origin :vx.y.z.9www</span></code></pre></div>
+<p>(where <code>x.y.z.9www</code> is the new version) to delete the
+newly created remote tag. This is the reason why {fledge} only tags
+<code>&quot;dev&quot;</code> releases automatically. Other releases always must be
+tagged manually with <code>tag_version()</code>.</p>
 </div>
 </div>
 
