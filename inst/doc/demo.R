@@ -19,7 +19,7 @@ dir.create(file.path(parent_dir, "remote"))
 gert::git_init(file.path(parent_dir, "remote"), bare = TRUE)
 pkg <- fledge::create_demo_project("tea", open = FALSE, dir = parent_dir)
 
-## ---- change-dir, echo=FALSE--------------------------------------------------
+## ----change-dir, echo=FALSE---------------------------------------------------
 knitr::opts_knit$set(root.dir = pkg)
 
 ## ----pkg-location, echo=FALSE-------------------------------------------------
@@ -180,7 +180,7 @@ show_tags(remote_url)
 fledge::bump_version()
 news <- readLines("NEWS.md")
 
-## ---- end, include=FALSE------------------------------------------------------
+## ----end, include=FALSE-------------------------------------------------------
 knitr::opts_knit$set(root.dir = dirname(knitr::current_input(dir = TRUE)))
 
 ## ----end2, pkg=FALSE, eval=TRUE-----------------------------------------------
