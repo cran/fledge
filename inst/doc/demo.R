@@ -10,7 +10,7 @@ knitr::opts_chunk$set(
 )
 
 ## ----create-package, eval = FALSE---------------------------------------------
-#  pkg <- usethis::create_package("tea")
+# pkg <- usethis::create_package("tea")
 
 ## ----create-package-real, echo = FALSE, message=FALSE, warning=FALSE----------
 parent_dir <- file.path(tempdir(), "fledge")
@@ -29,7 +29,7 @@ withr::with_options(
 )
 
 ## ----pkg-location2, eval=FALSE------------------------------------------------
-#  usethis::proj_set()
+# usethis::proj_set()
 
 ## ----dir-tree-----------------------------------------------------------------
 fs::dir_ls()
