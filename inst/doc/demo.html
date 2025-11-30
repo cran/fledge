@@ -405,7 +405,7 @@ instance!</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>show_files <span class="ot">&lt;-</span> <span class="cf">function</span>(remote_url) {</span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  tempdir_remote <span class="ot">&lt;-</span> withr<span class="sc">::</span><span class="fu">local_tempdir</span>(<span class="at">pattern =</span> <span class="st">&quot;remote&quot;</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  withr<span class="sc">::</span><span class="fu">with_dir</span>(tempdir_remote, {</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>    repo <span class="ot">&lt;-</span> gert<span class="sc">::</span><span class="fu">git_clone</span>(remote_url)  </span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>    repo <span class="ot">&lt;-</span> gert<span class="sc">::</span><span class="fu">git_clone</span>(remote_url)</span>
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>    <span class="fu">suppressMessages</span>(gert<span class="sc">::</span><span class="fu">git_branch_checkout</span>(<span class="st">&quot;main&quot;</span>, <span class="at">force =</span> <span class="cn">TRUE</span>, <span class="at">repo =</span> <span class="st">&quot;remote&quot;</span>))</span>
 <span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>    fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="st">&quot;remote&quot;</span>, <span class="at">recurse =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>  })</span>
@@ -416,7 +416,7 @@ instance!</p>
 <span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>show_tags <span class="ot">&lt;-</span> <span class="cf">function</span>(remote_url) {</span>
 <span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a>  tempdir_remote <span class="ot">&lt;-</span> withr<span class="sc">::</span><span class="fu">local_tempdir</span>(<span class="at">pattern =</span> <span class="st">&quot;remote&quot;</span>)</span>
 <span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a>  withr<span class="sc">::</span><span class="fu">with_dir</span>(tempdir_remote, {</span>
-<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a>    gert<span class="sc">::</span><span class="fu">git_clone</span>(remote_url)  </span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a>    gert<span class="sc">::</span><span class="fu">git_clone</span>(remote_url)</span>
 <span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a>    <span class="co"># Only show name and ref</span></span>
 <span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a>    gert<span class="sc">::</span><span class="fu">git_tag_list</span>(<span class="at">repo =</span> <span class="st">&quot;remote&quot;</span>)[, <span class="fu">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;ref&quot;</span>)]</span>
 <span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a>  })</span>
@@ -588,7 +588,7 @@ the edits.</p>
 <span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">cat</span>(news, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="do">## &lt;!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit --&gt;</span></span>
 <span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a><span class="do">## # tea 0.0.0.9001 (2025-10-16)</span></span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a><span class="do">## # tea 0.0.0.9001 (2025-11-30)</span></span>
 <span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a><span class="do">## - Add tests for cup of tea.</span></span>
 <span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a><span class="do">## - New cup_of_tea() function makes it easy to drink a cup of tee.</span></span>
@@ -610,7 +610,7 @@ can… if you do it right! Read on.</p>
 <span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="fu">cat</span>(news, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="do">## &lt;!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit --&gt;</span></span>
 <span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a><span class="do">## # tea 0.0.0.9001 (2025-10-16)</span></span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a><span class="do">## # tea 0.0.0.9001 (2025-11-30)</span></span>
 <span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a><span class="do">## - Add tests for cup of tea.</span></span>
 <span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a><span class="do">## - New cup_of_tea() function makes it easy to drink a cup of tea.</span></span>
@@ -659,7 +659,7 @@ commit has been added after that.</p>
 <span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">cat</span>(news, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a><span class="do">## &lt;!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit --&gt;</span></span>
 <span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a><span class="do">## # tea 0.0.0.9001 (2025-10-16)</span></span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a><span class="do">## # tea 0.0.0.9001 (2025-11-30)</span></span>
 <span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a><span class="do">## - Add tests for cup of tea.</span></span>
 <span id="cb22-8"><a href="#cb22-8" tabindex="-1"></a><span class="do">## - New cup_of_tea() function makes it easy to drink a cup of tea.</span></span>
@@ -732,12 +732,12 @@ bump the version again.</p>
 <span id="cb29-22"><a href="#cb29-22" tabindex="-1"></a><span class="fu">writeLines</span>(news)</span>
 <span id="cb29-23"><a href="#cb29-23" tabindex="-1"></a><span class="do">## &lt;!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit --&gt;</span></span>
 <span id="cb29-24"><a href="#cb29-24" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb29-25"><a href="#cb29-25" tabindex="-1"></a><span class="do">## # tea 0.0.0.9002 (2025-10-16)</span></span>
+<span id="cb29-25"><a href="#cb29-25" tabindex="-1"></a><span class="do">## # tea 0.0.0.9002 (2025-11-30)</span></span>
 <span id="cb29-26"><a href="#cb29-26" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb29-27"><a href="#cb29-27" tabindex="-1"></a><span class="do">## - New bowl_of_tea() function makes it easy to drink a bowl of tea.</span></span>
 <span id="cb29-28"><a href="#cb29-28" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb29-29"><a href="#cb29-29" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb29-30"><a href="#cb29-30" tabindex="-1"></a><span class="do">## # tea 0.0.0.9001 (2025-10-16)</span></span>
+<span id="cb29-30"><a href="#cb29-30" tabindex="-1"></a><span class="do">## # tea 0.0.0.9001 (2025-11-30)</span></span>
 <span id="cb29-31"><a href="#cb29-31" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb29-32"><a href="#cb29-32" tabindex="-1"></a><span class="do">## - Add tests for cup of tea.</span></span>
 <span id="cb29-33"><a href="#cb29-33" tabindex="-1"></a><span class="do">## - New cup_of_tea() function makes it easy to drink a cup of tea.</span></span>
@@ -802,17 +802,17 @@ values for the arguments are “dev” (default), “minor” and “major”.</
 <span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="fu">cat</span>(news, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a><span class="do">## &lt;!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit --&gt;</span></span>
 <span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a><span class="do">## # tea 0.0.1 (2025-10-16)</span></span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a><span class="do">## # tea 0.0.1 (2025-11-30)</span></span>
 <span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a><span class="do">## - Same as previous version.</span></span>
 <span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a><span class="do">## # tea 0.0.0.9002 (2025-10-16)</span></span>
+<span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a><span class="do">## # tea 0.0.0.9002 (2025-11-30)</span></span>
 <span id="cb31-11"><a href="#cb31-11" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb31-12"><a href="#cb31-12" tabindex="-1"></a><span class="do">## - New bowl_of_tea() function makes it easy to drink a bowl of tea.</span></span>
 <span id="cb31-13"><a href="#cb31-13" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb31-14"><a href="#cb31-14" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb31-15"><a href="#cb31-15" tabindex="-1"></a><span class="do">## # tea 0.0.0.9001 (2025-10-16)</span></span>
+<span id="cb31-15"><a href="#cb31-15" tabindex="-1"></a><span class="do">## # tea 0.0.0.9001 (2025-11-30)</span></span>
 <span id="cb31-16"><a href="#cb31-16" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb31-17"><a href="#cb31-17" tabindex="-1"></a><span class="do">## - Add tests for cup of tea.</span></span>
 <span id="cb31-18"><a href="#cb31-18" tabindex="-1"></a><span class="do">## - New cup_of_tea() function makes it easy to drink a cup of tea.</span></span>

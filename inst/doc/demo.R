@@ -24,7 +24,7 @@ knitr::opts_knit$set(root.dir = pkg)
 
 ## ----pkg-location, echo=FALSE-------------------------------------------------
 withr::with_options(
-  list("usethis.quiet" = TRUE), 
+  list("usethis.quiet" = TRUE),
   usethis::proj_set()
 )
 
@@ -54,7 +54,7 @@ gert::git_push(remote = "origin")
 show_files <- function(remote_url) {
   tempdir_remote <- withr::local_tempdir(pattern = "remote")
   withr::with_dir(tempdir_remote, {
-    repo <- gert::git_clone(remote_url)  
+    repo <- gert::git_clone(remote_url)
     suppressMessages(gert::git_branch_checkout("main", force = TRUE, repo = "remote"))
     fs::dir_ls("remote", recurse = TRUE)
   })
@@ -64,7 +64,7 @@ show_files(remote_url)
 show_tags <- function(remote_url) {
   tempdir_remote <- withr::local_tempdir(pattern = "remote")
   withr::with_dir(tempdir_remote, {
-    gert::git_clone(remote_url)  
+    gert::git_clone(remote_url)
     # Only show name and ref
     gert::git_tag_list(repo = "remote")[, c("name", "ref")]
   })
